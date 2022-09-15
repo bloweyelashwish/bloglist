@@ -12,6 +12,18 @@ test('blogs are returned as json', async() => {
         .expect('Content-Type', /application\/json/)
 }, 100000)
 
+test('there is one blog', async () => {
+    const response = await api.get('/api/blogs')
+
+    expect(response.body).toHaveLength(1)
+})
+
+test('the author of the first blog is Mark', async () => {
+    const response = await api.get('/api/blogs')
+
+    expect(response.body[0].author).toBe('Mark')
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
