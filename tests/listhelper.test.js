@@ -152,7 +152,7 @@ describe('testing for favorite blog', () => {
     })
 })
 
-describe('testing for most blogs item', () => {
+describe('testing for most values item', () => {
     test('most blogs', () => {
         const blogList = [
             {
@@ -178,6 +178,34 @@ describe('testing for most blogs item', () => {
             {
                 author: "Jaron",
                 blogs: 45
+            }
+        )
+    })
+    test('most likes', () => {
+        const blogListLikes = [
+            {
+                author: "Kate",
+                likes: 10
+            },
+            {
+                author: "Robert",
+                likes: 3
+            },
+            {
+                author: "Jaron",
+                likes: 45
+            },
+            {
+                author: "Amanda",
+                likes: 1
+            }
+        ]
+
+        const result = listHelper.mostLikes(blogListLikes);
+        expect(result).toStrictEqual(
+            {
+                author: "Jaron",
+                likes: 45
             }
         )
     })
