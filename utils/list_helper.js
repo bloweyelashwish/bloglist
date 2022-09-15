@@ -13,7 +13,13 @@ const totalLikes = (list) => {
     return total;
 }
 
+const favoriteBlog = (list) => {
+    const maxLikedPost = list.reduce((prev, curr) => prev.likes > curr.likes ? prev : curr);
+    return maxLikedPost;
+}
+
 module.exports = {
     dummy,
-    totalLikes
+    totalLikes,
+    favoriteBlog
 }
