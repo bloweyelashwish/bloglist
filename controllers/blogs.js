@@ -18,6 +18,21 @@ blogsRouter.post('/', async (request, response) => {
     response.status(201).json(body)
 })
 
+blogsRouter.put('/:id', async(request, response) => {
+    const updBlog = await Blog.findByIdAndUpdate(request.params.id, request.body,
+        {
+            new: true,
+            runValidators: true,
+            context: 'query'
+        })
+
+    if (updBlog) {
+        response.json(updBlog)
+    } else {
+        response.status(404).end()
+    }
+})
+
 blogsRouter.delete('/:id', async (request, response) => {
     await Blog.findByIdAndRemove(request.params.id)
     console.log(request.params.id)

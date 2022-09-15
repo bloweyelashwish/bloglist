@@ -133,6 +133,21 @@ describe('when modifying existing blogs', () => {
         const authors = blogsAtEnd.map(b => b.author)
         expect(authors).not.toContain(toDel.author)
     })
+
+    test('updating likes', async () => {
+        const blogsAtStart = await helper.blogsInDb()
+        const toUpd = blogsAtStart[0]
+
+        await api
+            .put(`/api/blogs/${toUpd.id}`)
+            .send({ likes: 600 })
+            .expect(200)
+
+        const blogsAtEnd = await helper.blogsInDb()
+        const updatedBlog = blogsAtEnd[0]
+
+        expect(updatedBlog.likes).toBe(600)
+    })
 })
 
 afterAll(() => {
