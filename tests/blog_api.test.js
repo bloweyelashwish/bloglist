@@ -98,6 +98,20 @@ test('likes default to 0', async () => {
     expect(response.body[0].likes).toBe(0);
 })
 
+test('verify if title and post are missing', async () => {
+    const falsyPost = {
+        author: 'Who knows',
+        likes: 140
+    }
+
+    const resp = await api
+        .post('/api/blogs')
+        .send(falsyPost)
+        .expect(400)
+
+    console.log(resp)
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
