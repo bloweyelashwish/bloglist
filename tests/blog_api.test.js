@@ -1,37 +1,20 @@
 const mongoose = require('mongoose')
 const supertest = require('supertest')
+const helper = require('./test_helper')
 const app = require('../app')
 const Blog = require('../models/blogs')
 
-const initialBlogs = [
-    {
-        title: "Some blog title",
-        author: "Aaron",
-        url: "facebook.com/",
-        likes: 60
-    },
-    {
-        title: "Some blog title",
-        author: "Jake",
-        url: "facebook.com/",
-        likes: 2
-    },
-    {
-        title: "Some blog title",
-        author: "Melissa",
-        url: "facebook.com/",
-        likes: 30
-    }
-]
+
 
 //initialize the database before every test
 beforeEach(async () => {
     await Blog.deleteMany({})
-    let blogObj = new Blog(initialBlogs[0])
+
+    let blogObj = new Blog(helper.initialBlogs[0])
     await blogObj.save()
-    blogObj = new Blog(initialBlogs[1])
+    blogObj = new Blog(helper.initialBlogs[1])
     await blogObj.save()
-    blogObj = new Blog(initialBlogs[2])
+    blogObj = new Blog(helper.initialBlogs[2])
     await blogObj.save()
 })
 
@@ -59,7 +42,7 @@ test('the author of the first blog is Mark', async () => {
 test('all blogs are returned', async () => {
     const response = await api.get('/api/blogs')
 
-    expect(response.body).toHaveLength(initialBlogs.length)
+    expect(response.body).toHaveLength(helper.initialBlogs.length)
 })
 
 test('a specific blog is within the returned blogs', async () => {
@@ -67,6 +50,42 @@ test('a specific blog is within the returned blogs', async () => {
     const authors = response.body.map(b => b.author);
 
     expect(authors).toContain('Aaron')
+})
+
+test('a valid blog can be added', async () => {
+    const newBlog = {
+        title: "Angel",
+        author: "Jaron",
+        url: "jb.forever/",
+        likes: 100000000
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const blogsAtEnd = await helper.blogsInDb()
+    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
+
+    const authors = blogsAtEnd.map(b => b.author)
+    expect(authors).toContain('Jaron')
+})
+
+test('blog without author is not added', async () => {
+    const newBlog = {
+        title: "Wont work"
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(400)
+
+    const blogsAtEnd = await helper.blogsInDb()
+
+    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
 })
 
 afterAll(() => {
