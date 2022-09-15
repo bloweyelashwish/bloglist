@@ -10,12 +10,9 @@ const Blog = require('../models/blogs')
 beforeEach(async () => {
     await Blog.deleteMany({})
 
-    let blogObj = new Blog(helper.initialBlogs[0])
-    await blogObj.save()
-    blogObj = new Blog(helper.initialBlogs[1])
-    await blogObj.save()
-    blogObj = new Blog(helper.initialBlogs[2])
-    await blogObj.save()
+    const blogObjects = helper.initialBlogs.map(blog => new Blog(blog))
+    const promiseArr = blogObjects.map(blog => blog.save())
+    await Promise.all(promiseArr)
 })
 
 const api = supertest(app)
@@ -53,12 +50,7 @@ test('a specific blog is within the returned blogs', async () => {
 })
 
 test('a valid blog can be added', async () => {
-    const newBlog = {
-        title: "Angel",
-        author: "Jaron",
-        url: "jb.forever/",
-        likes: 100000000
-    }
+    const newBlog = helper.initialBlogs[0]
 
     await api
         .post('/api/blogs')
@@ -73,7 +65,7 @@ test('a valid blog can be added', async () => {
     expect(authors).toContain('Jaron')
 })
 
-test('blog without author is not added', async () => {
+test('blog has valid data', async () => {
     const newBlog = {
         title: "Wont work"
     }
@@ -86,6 +78,24 @@ test('blog without author is not added', async () => {
     const blogsAtEnd = await helper.blogsInDb()
 
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
+})
+
+test('existence of id prop', async () => {
+    const response = await api.get('/api/blogs')
+
+    expect(response.body[0].id).toBeDefined()
+})
+
+test('likes default to 0', async () => {
+    await api
+        .post('/api/blogs')
+        .send(helper.initialBlogs[0])
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const response = await api.get('/api/blogs')
+
+    expect(response.body[0].likes).toBe(0);
 })
 
 afterAll(() => {
