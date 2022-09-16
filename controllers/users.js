@@ -9,6 +9,13 @@ usersRouter.get('/', async (request, response) => {
 
 usersRouter.post('/', async (request, response) => {
     const { username, name, password } = request.body
+    console.log(username, name, password.length)
+
+    if (!password || password.length < 3) {
+        return response.status(400).json({
+            error: 'password too short'
+        })
+    }
 
     const existingUser = await User.findOne({ username })
     if (existingUser) {
