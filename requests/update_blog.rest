@@ -1,0 +1,47 @@
+PUT http://localhost:3000/api/blogs/631b1f078d58f7fc58b5e891 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "I Love Olaf",
+  "author": "Anna",
+  "url": "https://frozen.com/anna",
+  "likes": 12
+}
+
+###
+
+PUT http://localhost:3000/api/blogs/631b1f078d58f7fc58b5e891 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "I Love Winter",
+  "author": "Olaf",
+  "url": "https://frozen.com/olaf",
+  "likes": 0
+}
+
+###
+
+PUT http://localhost:3000/api/blogs/631b1f078d58f7fc58b5e891 HTTP/1.1
+content-type: application/json
+
+{
+  "author": "Olaf",
+  "likes": 0
+}
+
+###
+
+PUT http://localhost:3000/api/blogs/631b1f078d58f7fc58b5e291 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "I Love Winter",
+  "author": "Olaf",
+  "url": "https://frozen.com/olaf",
+  "likes": 43
+}
+
+###
+
+DELETE http://localhost:3000/api/blogs/6231b1f078d58f7fc58b5e891 HTTP/1.1

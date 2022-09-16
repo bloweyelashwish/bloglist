@@ -1,0 +1,50 @@
+POST http://localhost:3000/api/users/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "tester",
+  "name": "Test Tester",
+  "password": "P4ssw0rd"
+}
+
+###
+
+POST http://localhost:3000/api/users/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "tester0",
+  "name": "Test Tester"
+}
+
+###
+
+POST http://localhost:3000/api/users/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "tester0",
+  "name": "Test Tester",
+  "password": "PP"
+}
+
+###
+
+POST http://localhost:3000/api/users/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Test Tester",
+  "password": "P4ssw0rd"
+}
+
+###
+
+POST http://localhost:3000/api/users/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "te",
+  "name": "Test Tester",
+  "password": "P4ssw0rd"
+}

@@ -1,0 +1,91 @@
+POST http://localhost:3000/api/blogs/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoiNjMxY2NkM2MxZmQ2YzZkMjRjOGMwYTFkIiwiaWF0IjoxNjYyODk2NDE2fQ.ccawi45uC7ZAc7CrbDB0Y7eZ64iXYV0RrK6BRxwfa0o
+
+{
+    "title": "Valon blogi",
+    "author": "Valokoodari",
+    "url": "https://valokoodari.eu",
+    "likes": 2,
+    "user": "631ccd3c1fd6c6d24c8c0a1d"
+}
+
+###
+
+POST http://localhost:3000/api/blogs/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoiNjMxY2NkM2MxZmQ2YzZkMjRjOGMwYTFkIiwiaWF0IjoxNjYyODk2NDE2fQ.ccawi45uC7ZAc7CrbDB0Y7eZ64iXYV0RrK6BRxwfa0o
+
+{
+    "title": "I Love Summer",
+    "author": "Olaf",
+    "url": "https://frozen.com/olaf",
+    "likes": 5,
+    "user": "631ccd3c1fd6c6d24c8c0a1d"
+}
+
+###
+
+POST http://localhost:3000/api/blogs/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoiNjMxY2NkM2MxZmQ2YzZkMjRjOGMwYTFkIiwiaWF0IjoxNjYyODk2NDE2fQ.ccawi45uC7ZAc7CrbDB0Y7eZ64iXYV0RrK6BRxwfa0o
+
+{
+    "title": "I Love Winter",
+    "author": "Olaf",
+    "url": "https://frozen.com/olaf",
+    "user": "631ccd3c1fd6c6d24c8c0a1d"
+}
+
+###
+
+POST http://localhost:3000/api/blogs/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoiNjMxY2NkM2MxZmQ2YzZkMjRjOGMwYTFkIiwiaWF0IjoxNjYyODk2NDE2fQ.ccawi45uC7ZAc7CrbDB0Y7eZ64iXYV0RrK6BRxwfa0o
+
+{
+    "author": "Olaf",
+    "likes": 23,
+    "user": "631ccd3c1fd6c6d24c8c0a1d"
+}
+
+###
+
+POST http://localhost:3000/api/blogs/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoiNjMxY2NkM2MxZmQ2YzZkMjRjOGMwYTFkIiwiaWF0IjoxNjYyODk2NDE2fQ.ccawi45uC7ZAc7CrbDB0Y7eZ64iXYV0RrK6BRxwfa0o
+
+{
+    "title": "I don't even know a Samantha",
+    "author": "Olaf",
+    "url": "https://frozen.com/olaf",
+    "likes": 5,
+    "user": "631ccd3c1fd6c6d24c8c0a3d"
+}
+
+###
+
+POST http://localhost:3000/api/blogs/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoiNjMxY2NkM2MxZmQ2YzZkMjRjOGMwYTFkIiwiaWF0IjoxNjYyODk2NDE2fQ.ccawi45uC7ZAc7CrbDB0Y7eZ64iXYV0RrK6BRxwfa0o
+
+{
+    "title": "Anna? Elsa? Sven?",
+    "author": "Olaf",
+    "url": "https://frozen.com/olaf",
+    "likes": 5
+}
+
+###
+
+POST http://localhost:3000/api/blogs/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoiNjMxY2NkM2MxZmQ3YzZkMjRjOGMwYTFkIiwaaWF0IjoxNjYyODk2NDE2fQ.ccawi45uC7ZAc7CrbDB0Y7eZ64iXYV0RrK6BRxwfa0o
+
+{
+    "title": "I Love Summer",
+    "author": "Olaf",
+    "url": "https://frozen.com/olaf",
+    "likes": 5,
+    "user": "631ccd3c1fd6c6d24c8c0a1d"
+}
