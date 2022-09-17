@@ -1,6 +1,7 @@
 const userExtractor = require("../utils/user_extractor")
 const blogsRouter = require("express").Router()
 const Blog = require("../models/blog")
+const {request} = require("express");
 
 blogsRouter.get("/", async (_, res) => {
   const blogs = await Blog.find({}).populate("user", { username: 1, name: 1 })
@@ -32,17 +33,26 @@ blogsRouter.post("/", userExtractor, async (req, res, next) => {
   }
 })
 
-blogsRouter.put("/:id", async (req, res) => {
-  const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+blogsRouter.put("/:id", async (request, response) => {
+  // const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+  //   new: true,
+  //   runValidators: true,
+  //   context: "query"
+  // })
+  const { body } = request
+  const { title, author, url, likes, user } = body
+  const blog = { title, author, url, likes, user }
+  console.log(request)
+
+
+  const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, {
     new: true,
     runValidators: true,
     context: "query"
-  })
+  }).populate('user', { name: 1, username: 1 })
 
   if (updatedBlog) {
-    res.json(updatedBlog)
-  } else {
-    res.status(404).end()
+    response.json(updatedBlog)
   }
 })
 
